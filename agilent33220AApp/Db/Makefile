@@ -11,7 +11,7 @@ include $(TOP)/configure/CONFIG
 # In a Diamond Support Module, install
 # templates like this
 #
-#DB += motor.template
+DB += agilent33220A.template
 #DB += basic_motor.template
 
 #----------------------------------------------------

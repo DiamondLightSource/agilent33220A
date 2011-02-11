@@ -18,6 +18,8 @@
 # or include statements that pull in similar RELEASE files.
 # Build settings that are NOT module paths should appear in a
 # CONFIG_SITE file.
+SUPPORT = /dls_sw/prod/R3.14.11/support
+WORK = /dls_sw/work/R3.14.11/support
 
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 

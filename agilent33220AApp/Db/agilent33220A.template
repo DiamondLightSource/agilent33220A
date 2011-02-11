@@ -1,0 +1,283 @@
+# % macro, P, Device prefix
+# % macro, Q, Device suffix
+# % macro, PORT, Asyn port name
+# % macro, name, Name to export to gda as
+# % macro, gda_desc, Description for gda
+# % gdatag,template,agilent33220A,$(name),$(gda_desc)
+# % autosave 2 SCAN
+record(seq, "$(P)$(Q):UPDATE") {
+  field(DESC, "Update Params")
+  field(FLNK, "$(P)$(Q):UPDATEREC")    
+  field(SCAN, "5 second")
+}
+
+record(seq, "$(P)$(Q):UPDATEREC") {
+  field(DESC, "Update Params")
+  field(DOL1, "1")
+  field(DOL2, "1")
+  field(DOL3, "1")
+  field(DOL4, "1")
+  field(DOL5, "1")  
+  field(DOL6, "1")    
+  field(DOL7, "1")
+  field(DOL8, "1")      
+  field(DOL9, "1")                
+  field(LNK1, "$(P)$(Q):FUNC:RBV.PROC")    
+  field(LNK2, "$(P)$(Q):FREQ:RBV.PROC")
+  field(LNK3, "$(P)$(Q):AMP:RBV.PROC")
+  field(LNK4, "$(P)$(Q):OFF:RBV.PROC")
+  field(LNK5, "$(P)$(Q):OUT:RBV.PROC")
+  field(LNK6, "$(P)$(Q):DCYC:RBV.PROC")
+  field(LNK7, "$(P)$(Q):SYMM:RBV.PROC")
+  field(LNK8, "$(P)$(Q):WIDT:RBV.PROC")
+  field(LNK9, "$(P)$(Q):TRAN:RBV.PROC")                      
+  field(PINI, "YES")
+}
+
+# % gdatag,binary,rw,$(name),DISABLE
+record(bo, "$(P)$(Q):DISABLE") {
+  field(DESC, "Disable comms")
+  field(PINI, "YES")
+  field(VAL, "0")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Enabled")
+  field(ONAM, "Disabled")
+}
+
+#% gdatag,mbbinary,rw,$(name),FUNC
+record(mbbo, "$(P)$(Q):FUNC") {
+  field(DESC, "Function")
+  field(DTYP, "stream")
+  field(FLNK, "$(P)$(Q):UPDATEREC")
+  field(OUT, "@agilent33220A.proto write_string(FUNC) $(PORT)")
+  field(ZRST, "SIN")
+  field(ONST, "SQU")
+  field(TWST, "RAMP")
+  field(THST, "PULS")
+  field(FRST, "NOIS")
+  field(FVST, "DC")
+  field(SXST, "USER")                                      
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(FRVL, "4")
+  field(FVVL, "5")
+  field(SXVL, "6")                                      
+  field(PINI, "YES")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % gdatag,mbbinary,ro,$(name),FUNCRBV
+# % archiver 10 Monitor
+record(mbbi, "$(P)$(Q):FUNC:RBV") {
+  field(DESC, "Function Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_string(FUNC) $(PORT)")
+  field(ZRST, "SIN")
+  field(ONST, "SQU")
+  field(TWST, "RAMP")
+  field(THST, "PULS")
+  field(FRST, "NOIS")
+  field(FVST, "DC")
+  field(SXST, "USER")                                      
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(FRVL, "4")
+  field(FVVL, "5")
+  field(SXVL, "6")  
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#% gdatag,pv,rw,$(name),FREQ
+record(ao, "$(P)$(Q):FREQ") {
+  field(DESC, "Frequency")
+  field(DTYP, "stream")
+  field(FLNK, "$(P)$(Q):FREQ:RBV")
+  field(OUT, "@agilent33220A.proto write_float(FREQ) $(PORT)")
+  field(PREC, "3")
+  field(EGU, "Hz")
+  field(PINI, "YES")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % gdatag,pv,ro,$(name),FREQRBV
+# % archiver 10 Monitor
+record(ai, "$(P)$(Q):FREQ:RBV") {
+  field(DESC, "Frequency Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_float(FREQ) $(PORT)")
+  field(PREC, "3")
+  field(EGU, "Hz")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#% gdatag,pv,rw,$(name),AMP
+record(ao, "$(P)$(Q):AMP") {
+  field(DESC, "Amplitude")
+  field(DTYP, "stream")
+  field(FLNK, "$(P)$(Q):AMP:RBV")
+  field(OUT, "@agilent33220A.proto write_float(VOLT) $(PORT)")
+  field(PREC, "3")
+  field(EGU, "V")
+  field(PINI, "YES")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % gdatag,pv,ro,$(name),AMPRBV
+# % archiver 10 Monitor
+record(ai, "$(P)$(Q):AMP:RBV") {
+  field(DESC, "Amplitude Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_float(VOLT) $(PORT)")
+  field(PREC, "3")
+  field(EGU, "V")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#% gdatag,pv,rw,$(name),OFF
+record(ao, "$(P)$(Q):OFF") {
+  field(DESC, "Offset")
+  field(DTYP, "stream")
+  field(FLNK, "$(P)$(Q):OFF:RBV")
+  field(OUT, "@agilent33220A.proto write_float(VOLT:OFFS) $(PORT)")
+  field(PREC, "3")
+  field(EGU, "V")
+  field(PINI, "YES")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % gdatag,pv,ro,$(name),OFFRBV
+# % archiver 10 Monitor
+record(ai, "$(P)$(Q):OFF:RBV") {
+  field(DESC, "Offset Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_float(VOLT:OFFS) $(PORT)")
+  field(PREC, "3")
+  field(EGU, "V")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#% gdatag,binary,rw,$(name),OUT
+record(bo, "$(P)$(Q):OUT") {
+  field(DESC, "Output")
+  field(DTYP, "stream")
+  field(FLNK, "$(P)$(Q):OUT:RBV")
+  field(OUT, "@agilent33220A.proto write_int(OUTP) $(PORT)")
+  field(ZNAM, "Off")
+  field(ONAM, "On")  
+  field(PINI, "YES")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % gdatag,binary,ro,$(name),OUTRBV
+# % archiver 10 Monitor
+record(bi, "$(P)$(Q):OUT:RBV") {
+  field(DESC, "Output Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_int(OUTP) $(PORT)")
+  field(ZNAM, "Off")
+  field(ONAM, "On") 
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#% gdatag,pv,rw,$(name),DCYC
+record(ao, "$(P)$(Q):DCYC") {
+  field(DESC, "Duty Cycle")
+  field(DTYP, "stream")
+  field(FLNK, "$(P)$(Q):DCYC:RBV")
+  field(OUT, "@agilent33220A.proto write_float(FUNC:SQU:DCYC) $(PORT)")
+  field(PREC, "3")
+  field(EGU, "%") 
+  field(PINI, "YES")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % gdatag,pv,ro,$(name),DCYCRBV
+# % archiver 10 Monitor
+record(ai, "$(P)$(Q):DCYC:RBV") {
+  field(DESC, "Duty Cycle Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_float(FUNC:SQU:DCYC) $(PORT)")
+  field(PREC, "3")
+  field(EGU, "%")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#% gdatag,pv,rw,$(name),SYMM
+record(ao, "$(P)$(Q):SYMM") {
+  field(DESC, "Ramp Symmetry")
+  field(DTYP, "stream")
+  field(FLNK, "$(P)$(Q):DCYC:RBV")
+  field(OUT, "@agilent33220A.proto write_float(FUNC:RAMP:SYMM) $(PORT)")
+  field(PREC, "3")
+  field(EGU, "%") 
+  field(PINI, "YES")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % gdatag,pv,ro,$(name),SYMMRBV
+# % archiver 10 Monitor
+record(ai, "$(P)$(Q):SYMM:RBV") {
+  field(DESC, "Ramp Symmetry Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_float(FUNC:RAMP:SYMM) $(PORT)")
+  field(PREC, "3")
+  field(EGU, "%")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#% gdatag,pv,rw,$(name),WIDT
+record(ao, "$(P)$(Q):WIDT") {
+  field(DESC, "Pulse Width")
+  field(DTYP, "stream")
+  field(FLNK, "$(P)$(Q):WIDT:RBV")
+  field(OUT, "@agilent33220A.proto write_float(FUNC:PULS:WIDT) $(PORT)")
+  field(PREC, "6")
+  field(EGU, "s") 
+  field(PINI, "YES")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % gdatag,pv,ro,$(name),WIDTRBV
+# % archiver 10 Monitor
+record(ai, "$(P)$(Q):WIDT:RBV") {
+  field(DESC, "Pulse Width Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_float(FUNC:PULS:WIDT) $(PORT)")
+  field(PREC, "6")
+  field(EGU, "s")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#% gdatag,pv,rw,$(name),TRAN
+record(ao, "$(P)$(Q):TRAN") {
+  field(DESC, "Pulse Edge Transition")
+  field(DTYP, "stream")
+  field(FLNK, "$(P)$(Q):TRAN:RBV")
+  field(OUT, "@agilent33220A.proto write_float(FUNC:PULS:TRAN) $(PORT)")
+  field(PREC, "3")
+  field(EGU, "s") 
+  field(PINI, "YES")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % gdatag,pv,ro,$(name),TRANRBV
+# % archiver 10 Monitor
+record(ai, "$(P)$(Q):TRAN:RBV") {
+  field(DESC, "Pulse Edge Transition Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_float(FUNC:PULS:TRAN) $(PORT)")
+  field(PREC, "3")
+  field(EGU, "s")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+
+record(asyn, "$(P)$(Q):ASYN") {
+  field(PORT, "$(PORT)")
+  field(OEOS, "\n")
+  field(IEOS, "\n")  
+}
