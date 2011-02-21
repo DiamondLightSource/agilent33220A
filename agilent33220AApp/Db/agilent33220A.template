@@ -4,6 +4,7 @@
 # % macro, name, Name to export to gda as
 # % macro, gda_desc, Description for gda
 # % gdatag,template,agilent33220A,$(name),$(gda_desc)
+# % gui, $(name), edm, agilent33220A.edl, P=$(P),Q=$(Q)
 # % autosave 2 SCAN
 record(seq, "$(P)$(Q):UPDATE") {
   field(DESC, "Update Params")
