@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
 <components arch="linux-x86">
 	<asyn.AsynIP name="FUNC" port="172.23.243.212:5025" simulation="localhost:9010"/>
-	<agilent33220A.agilent33220A P="TEST" PORT="FUNC" Q="FUNC"/>
+	<agilent33220A.agilent33220A P="TESTFUNC" PORT="FUNC" Q="" gda_desc="Function Generator" name="FGEN"/>
 </components>
