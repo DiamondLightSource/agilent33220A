@@ -19,7 +19,7 @@ ctlBgColor1 index 10
 ctlBgColor2 index 14
 topShadowColor index 1
 botShadowColor index 11
-title "Agilent 33220A - $(P)$(Q)"
+title "Agilent 33220A - $(agilent)"
 showGrid
 snapToGrid
 gridSize 5
@@ -109,7 +109,7 @@ fontAlign "center"
 fgColor index 14
 bgColor index 48
 value {
-  "Agilent - $(P)$(Q)"
+  "Agilent - $(agilent)"
 }
 endObjectProperties
 
@@ -333,8 +333,8 @@ bgColor index 3
 inconsistentColor index 0
 topShadowColor index 1
 botShadowColor index 11
-controlPv "$(P)$(Q):UPDATE.SCAN"
-indicatorPv "$(P)$(Q):UPDATE.SCAN"
+controlPv "$(agilent):UPDATE.SCAN"
+indicatorPv "$(agilent):UPDATE.SCAN"
 font "arial-bold-r-12.0"
 endObjectProperties
 
@@ -354,7 +354,7 @@ offColor index 3
 inconsistentColor index 3
 topShadowColor index 1
 botShadowColor index 11
-controlPv "$(P)$(Q):DISABLE"
+controlPv "$(agilent):DISABLE"
 3d
 font "arial-bold-r-14.0"
 objType "controls"
@@ -374,7 +374,7 @@ font "arial-bold-r-14.0"
 fontAlign "center"
 fgColor index 22
 bgColor index 0
-visPv "$(P)$(Q):FREQ:RBV.SEVR"
+visPv "$(agilent):FREQ:RBV.SEVR"
 visMin "1"
 visMax "5"
 value {
@@ -392,7 +392,7 @@ x 90
 y 110
 w 115
 h 25
-controlPv "$(P)$(Q):FREQ"
+controlPv "$(agilent):FREQ"
 fgColor index 25
 bgColor index 3
 fill
@@ -409,7 +409,7 @@ x 215
 y 110
 w 115
 h 25
-controlPv "$(P)$(Q):FREQ:RBV"
+controlPv "$(agilent):FREQ:RBV"
 fgColor index 16
 fgAlarm
 bgColor index 10
@@ -427,7 +427,7 @@ x 90
 y 140
 w 115
 h 25
-controlPv "$(P)$(Q):AMP"
+controlPv "$(agilent):AMP"
 fgColor index 25
 bgColor index 3
 fill
@@ -444,7 +444,7 @@ x 215
 y 140
 w 115
 h 25
-controlPv "$(P)$(Q):AMP:RBV"
+controlPv "$(agilent):AMP:RBV"
 fgColor index 16
 fgAlarm
 bgColor index 10
@@ -481,7 +481,7 @@ x 215
 y 170
 w 115
 h 25
-controlPv "$(P)$(Q):OFF:RBV"
+controlPv "$(agilent):OFF:RBV"
 fgColor index 16
 fgAlarm
 bgColor index 10
@@ -518,7 +518,7 @@ x 90
 y 170
 w 115
 h 25
-controlPv "$(P)$(Q):OFF"
+controlPv "$(agilent):OFF"
 fgColor index 25
 bgColor index 3
 fill
@@ -540,8 +540,8 @@ bgColor index 3
 inconsistentColor index 0
 topShadowColor index 1
 botShadowColor index 11
-controlPv "$(P)$(Q):FUNC"
-indicatorPv "$(P)$(Q):FUNC:RBV"
+controlPv "$(agilent):FUNC"
+indicatorPv "$(agilent):FUNC:RBV"
 font "arial-bold-r-12.0"
 endObjectProperties
 
@@ -560,8 +560,8 @@ bgColor index 3
 inconsistentColor index 0
 topShadowColor index 1
 botShadowColor index 11
-controlPv "$(P)$(Q):OUT"
-indicatorPv "$(P)$(Q):OUT:RBV"
+controlPv "$(agilent):OUT"
+indicatorPv "$(agilent):OUT:RBV"
 font "arial-bold-r-12.0"
 endObjectProperties
 
@@ -618,7 +618,7 @@ onColor index 3
 offColor index 3
 topShadowColor index 1
 botShadowColor index 11
-controlPv "$(P)$(Q):UPDATE.PROC"
+controlPv "$(agilent):UPDATE.PROC"
 pressValue "1"
 onLabel "Read"
 offLabel "Read"
@@ -669,7 +669,7 @@ x 90
 y 200
 w 115
 h 25
-controlPv "$(P)$(Q):DCYC"
+controlPv "$(agilent):DCYC"
 fgColor index 25
 bgColor index 3
 fill
@@ -686,7 +686,7 @@ x 215
 y 200
 w 115
 h 25
-controlPv "$(P)$(Q):DCYC:RBV"
+controlPv "$(agilent):DCYC:RBV"
 fgColor index 16
 fgAlarm
 bgColor index 10
@@ -696,7 +696,7 @@ endObjectProperties
 
 endGroup
 
-visPv "$(P)$(Q):FUNC:RBV"
+visPv "$(agilent):FUNC:RBV"
 visMin "1"
 visMax "2"
 endObjectProperties
@@ -743,7 +743,7 @@ x 90
 y 200
 w 115
 h 25
-controlPv "$(P)$(Q):SYMM"
+controlPv "$(agilent):SYMM"
 fgColor index 25
 bgColor index 3
 fill
@@ -760,7 +760,7 @@ x 215
 y 200
 w 115
 h 25
-controlPv "$(P)$(Q):SYMM:RBV"
+controlPv "$(agilent):SYMM:RBV"
 fgColor index 16
 fgAlarm
 bgColor index 10
@@ -770,7 +770,7 @@ endObjectProperties
 
 endGroup
 
-visPv "$(P)$(Q):FUNC:RBV"
+visPv "$(agilent):FUNC:RBV"
 visMin "2"
 visMax "3"
 endObjectProperties
@@ -798,7 +798,7 @@ x 215
 y 230
 w 115
 h 25
-controlPv "$(P)$(Q):TRAN:RBV"
+controlPv "$(agilent):TRAN:RBV"
 displayMode "exp"
 precision 2
 fgColor index 16
@@ -818,7 +818,7 @@ x 90
 y 230
 w 115
 h 25
-controlPv "$(P)$(Q):TRAN"
+controlPv "$(agilent):TRAN"
 displayMode "exp"
 precision 2
 fgColor index 25
@@ -856,7 +856,7 @@ x 215
 y 200
 w 115
 h 25
-controlPv "$(P)$(Q):WIDT:RBV"
+controlPv "$(agilent):WIDT:RBV"
 fgColor index 16
 fgAlarm
 bgColor index 10
@@ -874,7 +874,7 @@ x 90
 y 200
 w 115
 h 25
-controlPv "$(P)$(Q):WIDT"
+controlPv "$(agilent):WIDT"
 fgColor index 25
 bgColor index 3
 fill
@@ -902,7 +902,7 @@ endObjectProperties
 
 endGroup
 
-visPv "$(P)$(Q):FUNC:RBV"
+visPv "$(agilent):FUNC:RBV"
 visMin "3"
 visMax "4"
 endObjectProperties

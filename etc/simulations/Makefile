@@ -1,7 +1,7 @@
 TOP=../..
 include $(TOP)/configure/CONFIG
 
-DATA+=agilent3320A_sim.py
+DATA+=agilent33220A_sim.py
 
 include $(TOP)/configure/RULES
 #----------------------------------------
