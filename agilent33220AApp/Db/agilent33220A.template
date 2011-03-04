@@ -32,13 +32,13 @@ record(seq, "$(P)$(Q):UPDATEREC") {
   field(LNK7, "$(P)$(Q):SYMM:RBV.PROC")
   field(LNK8, "$(P)$(Q):WIDT:RBV.PROC")
   field(LNK9, "$(P)$(Q):TRAN:RBV.PROC")                      
-  field(PINI, "YES")
+#  field(PINI, "YES")
 }
 
 # % gdatag,binary,rw,$(name),DISABLE
 record(bo, "$(P)$(Q):DISABLE") {
   field(DESC, "Disable comms")
-  field(PINI, "YES")
+#  field(PINI, "YES")
   field(VAL, "0")
   field(OMSL, "supervisory")
   field(ZNAM, "Enabled")
@@ -65,7 +65,7 @@ record(mbbo, "$(P)$(Q):FUNC") {
   field(FRVL, "4")
   field(FVVL, "5")
   field(SXVL, "6")                                      
-  field(PINI, "YES")
+#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -100,7 +100,7 @@ record(ao, "$(P)$(Q):FREQ") {
   field(OUT, "@agilent33220A.proto write_float(FREQ) $(PORT)")
   field(PREC, "3")
   field(EGU, "Hz")
-  field(PINI, "YES")
+#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -123,7 +123,7 @@ record(ao, "$(P)$(Q):AMP") {
   field(OUT, "@agilent33220A.proto write_float(VOLT) $(PORT)")
   field(PREC, "3")
   field(EGU, "V")
-  field(PINI, "YES")
+#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -146,7 +146,7 @@ record(ao, "$(P)$(Q):OFF") {
   field(OUT, "@agilent33220A.proto write_float(VOLT:OFFS) $(PORT)")
   field(PREC, "3")
   field(EGU, "V")
-  field(PINI, "YES")
+#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -169,7 +169,7 @@ record(bo, "$(P)$(Q):OUT") {
   field(OUT, "@agilent33220A.proto write_int(OUTP) $(PORT)")
   field(ZNAM, "Off")
   field(ONAM, "On")  
-  field(PINI, "YES")
+#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -192,7 +192,7 @@ record(ao, "$(P)$(Q):DCYC") {
   field(OUT, "@agilent33220A.proto write_float(FUNC:SQU:DCYC) $(PORT)")
   field(PREC, "3")
   field(EGU, "%") 
-  field(PINI, "YES")
+#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -215,7 +215,7 @@ record(ao, "$(P)$(Q):SYMM") {
   field(OUT, "@agilent33220A.proto write_float(FUNC:RAMP:SYMM) $(PORT)")
   field(PREC, "3")
   field(EGU, "%") 
-  field(PINI, "YES")
+#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -238,7 +238,7 @@ record(ao, "$(P)$(Q):WIDT") {
   field(OUT, "@agilent33220A.proto write_float(FUNC:PULS:WIDT) $(PORT)")
   field(PREC, "6")
   field(EGU, "s") 
-  field(PINI, "YES")
+#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -261,7 +261,7 @@ record(ao, "$(P)$(Q):TRAN") {
   field(OUT, "@agilent33220A.proto write_float(FUNC:PULS:TRAN) $(PORT)")
   field(PREC, "3")
   field(EGU, "s") 
-  field(PINI, "YES")
+#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 

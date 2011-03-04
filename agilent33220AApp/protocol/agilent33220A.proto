@@ -5,8 +5,8 @@ InTerminator = '\n';
 OutTerminator = '\n';
 # MaxInput = 0;
 # LockTimeout should be GT ReplyTimeout
-LockTimeout = 2000;
-ReplyTimeout = 300;
+LockTimeout = 5000;
+ReplyTimeout = 200;
 ReadTimeout = 100;
 
 read_float {
@@ -15,7 +15,7 @@ read_float {
 
 write_float {
     out "\$1 %e";
-    @init{ read_float; }
+#    @init{ read_float; }
 }
 
 read_int {
@@ -24,7 +24,7 @@ read_int {
 
 write_int {
     out "\$1 %d";
-    @init{ read_int;}
+#    @init{ read_int;}
 }
 
 read_string {
@@ -33,6 +33,6 @@ read_string {
 
 write_string {
     out "\$1 %s";
-    @init{ read_string;}
+#    @init{ read_string;}
 }
 
