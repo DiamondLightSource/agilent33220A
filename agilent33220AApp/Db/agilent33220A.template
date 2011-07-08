@@ -383,6 +383,111 @@ record(ai, "$(P)$(Q):TRAN:RBV") {
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
+###########################################################################
+# Records to deal with ramping the frequency up and down
+
+# % autosave 1 VAL
+record(ao, "$(P)$(Q):FREQSTEP") {
+  field(DESC, "Freq step size")
+  field(DTYP, "Soft Channel")
+  field(VAL, "10")
+  field(PREC, "3")
+  field(EGU, "Hz") 
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % autosave 1 VAL
+record(ao, "$(P)$(Q):STARTFREQ") {
+  field(DESC, "Ramp start freq")
+  field(DTYP, "Soft Channel")
+  field(VAL, "1")
+  field(PREC, "3")
+  field(EGU, "Hz") 
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % autosave 1 VAL
+record(ao, "$(P)$(Q):STOPFREQ") {
+  field(DESC, "Ramp stop freq")
+  field(DTYP, "Soft Channel")
+  field(VAL, "100")
+  field(PREC, "3")
+  field(EGU, "Hz") 
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#Start a ramp from the start to the stop freq, using the set step size
+#and using the set ramp rate. Set a busy record to support caput callback.
+#Set the frequency equal to the start freq first.
+record(seq, "$(P)$(Q):STARTRAMP") {
+  field(DESC, "Start the ramp")
+  field(DOL1, "$(P)$(Q):STARTFREQ NPP")
+  field(LNK1, "$(P)$(Q):FREQ.VAL PP")
+  field(DO2, "0")
+  field(LNK2, "$(P)$(Q):PERFORMRAMP.DISA")  
+  field(DO3, "1")
+  field(LNK3, "$(P)$(Q):BUSYRAMP PP")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#Stop a ramp. Poll the desired and actual freq, and when equal do the stop sequence
+record(calcout, "$(P)$(Q):STOPRAMP") {
+  field(DESC, "Stop the ramp")
+  field(INPA, "$(P)$(Q):STOPFREQ NPP")
+  field(INPB, "$(P)$(Q):FREQ:RBV NPP")
+  field(CALC, "A=B")
+  field(OUT, "$(P)$(Q):STOPRAMPSEQ PP")
+  field(SCAN, "1 second")
+  field(DOPT, "Use CALC")
+  field(OOPT, "Transition To Non-zero")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#Disable the ramp record and clear the busy record.
+record(seq, "$(P)$(Q):STOPRAMPSEQ") {
+  field(DESC, "Stop the ramp")
+  field(DO1, "1")
+  field(LNK1, "$(P)$(Q):PERFORMRAMP.DISA")
+  field(DO2, "0")
+  field(LNK2, "$(P)$(Q):BUSYRAMP PP")
+}
+
+# Busy record to implement callback
+record(busy, "$(P)$(Q):BUSYRAMP") {
+}
+
+#This is disabled normally, and only enabled when ramping.
+#It is disabled again when the target freq is reached.
+# % autosave 1 SCAN
+record(calcout, "$(P)$(Q):PERFORMRAMP") {
+  field(DESC, "Ramp the freq")
+  field(INPA, "$(P)$(Q):STARTFREQ NPP")
+  field(INPB, "$(P)$(Q):STOPFREQ NPP")
+  field(INPC, "$(P)$(Q):FREQSTEP NPP")
+  field(INPD, "$(P)$(Q):FREQ:RBV NPP")
+  field(CALC, "(B>A)?((D<B)?(D+C):B):((D>B)?(D-C):B)")
+  field(OUT, "$(P)$(Q):FREQ.VAL PP")
+  field(SCAN, "Passive")
+  field(DOPT, "Use CALC")
+  field(OOPT, "On Change")
+  field(DISA, "1")
+}
+
+#Perform a ramp down to zero and disable the output
+record(seq, "$(P)$(Q):RAMPTOZERO") {
+  field(DESC, "Ramp to zero")
+  field(DOL1, "$(P)$(Q):FREQ:RBV NPP")
+  field(LNK1, "$(P)$(Q):STARTFREQ PP")
+  field(DO2, "0.0001")
+  field(LNK2, "$(P)$(Q):STOPFREQ PP")
+  field(DO3, "1")
+  field(LNK3, "$(P)$(Q):STARTRAMP.PROC PP")  
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+
+###################################################################################
+
 
 record(asyn, "$(P)$(Q):ASYN") {
   field(PORT, "$(PORT)")
