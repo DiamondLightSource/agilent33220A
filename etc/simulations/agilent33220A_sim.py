@@ -21,6 +21,10 @@ class agilent33220A_sim(serial_device):
         	"FUNC:RAMP:SYMM": 50.0,
         	"FUNC:PULS:WIDT": 0.000001,
         	"FUNC:PULS:TRAN": 0.000000005,
+        	"TRIG:SOUR": "IMM",
+        	"BURS:MODE": "TRIG",
+        	"BURS:NCYC": 1.0,
+        	"BURS:STAT": 0
         }        	
 
     def reply(self,command):

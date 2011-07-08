@@ -23,6 +23,7 @@ record(seq, "$(P)$(Q):UPDATEREC") {
   field(DOL7, "1")
   field(DOL8, "1")      
   field(DOL9, "1")                
+  field(DOLA, "1")                  
   field(LNK1, "$(P)$(Q):FUNC:RBV.PROC")    
   field(LNK2, "$(P)$(Q):FREQ:RBV.PROC")
   field(LNK3, "$(P)$(Q):AMP:RBV.PROC")
@@ -31,14 +32,25 @@ record(seq, "$(P)$(Q):UPDATEREC") {
   field(LNK6, "$(P)$(Q):DCYC:RBV.PROC")
   field(LNK7, "$(P)$(Q):SYMM:RBV.PROC")
   field(LNK8, "$(P)$(Q):WIDT:RBV.PROC")
-  field(LNK9, "$(P)$(Q):TRAN:RBV.PROC")                      
-#  field(PINI, "YES")
+  field(LNK9, "$(P)$(Q):TRAN:RBV.PROC")
+  field(LNKA, "$(P)$(Q):UPDATEREC2.PROC")                                              
+}
+
+record(seq, "$(P)$(Q):UPDATEREC2") {
+  field(DESC, "Update Params 2")
+  field(DOL1, "1")
+  field(DOL2, "1")
+  field(DOL3, "1")
+  field(DOL4, "1")
+  field(LNK1, "$(P)$(Q):TRIGSRC:RBV.PROC")    
+  field(LNK2, "$(P)$(Q):BURSTMODE:RBV.PROC")
+  field(LNK3, "$(P)$(Q):BURSTNCYC:RBV.PROC")
+  field(LNK4, "$(P)$(Q):BURST:RBV.PROC")
 }
 
 # % gdatag,binary,rw,$(name),DISABLE
 record(bo, "$(P)$(Q):DISABLE") {
   field(DESC, "Disable comms")
-#  field(PINI, "YES")
   field(VAL, "0")
   field(OMSL, "supervisory")
   field(ZNAM, "Enabled")
@@ -57,7 +69,7 @@ record(mbbo, "$(P)$(Q):FUNC") {
   field(THST, "PULS")
   field(FRST, "NOIS")
   field(FVST, "DC")
-  field(SXST, "USER")                                      
+  field(SXST, "USER")                                          
   field(ZRVL, "0")
   field(ONVL, "1")
   field(TWVL, "2")
@@ -65,7 +77,6 @@ record(mbbo, "$(P)$(Q):FUNC") {
   field(FRVL, "4")
   field(FVVL, "5")
   field(SXVL, "6")                                      
-#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -81,7 +92,7 @@ record(mbbi, "$(P)$(Q):FUNC:RBV") {
   field(THST, "PULS")
   field(FRST, "NOIS")
   field(FVST, "DC")
-  field(SXST, "USER")                                      
+  field(SXST, "USER")                                           
   field(ZRVL, "0")
   field(ONVL, "1")
   field(TWVL, "2")
@@ -89,6 +100,110 @@ record(mbbi, "$(P)$(Q):FUNC:RBV") {
   field(FRVL, "4")
   field(FVVL, "5")
   field(SXVL, "6")  
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#% gdatag,mbbinary,rw,$(name),TRIGSRC
+record(mbbo, "$(P)$(Q):TRIGSRC") {
+  field(DESC, "Trigger Source")
+  field(DTYP, "stream")
+  field(OUT, "@agilent33220A.proto write_string(TRIG:SOUR) $(PORT)")
+  field(FLNK, "$(P)$(Q):TRIGSRC:RBV")  
+  field(ZRST, "IMM")
+  field(ONST, "EXT")
+  field(TWST, "BUS")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % gdatag,mbbinary,ro,$(name),TRIGSRCRBV
+# % archiver 10 Monitor
+record(mbbi, "$(P)$(Q):TRIGSRC:RBV") {
+  field(DESC, "Trigger Source Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_string(TRIG:SOUR) $(PORT)")
+  field(ZRST, "IMM")
+  field(ONST, "EXT")
+  field(TWST, "BUS")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#% gdatag,mbbinary,rw,$(name),BURSTMODE
+record(mbbo, "$(P)$(Q):BURSTMODE") {
+  field(DESC, "Burst Mode")
+  field(DTYP, "stream")
+  field(OUT, "@agilent33220A.proto write_string(BURS:MODE) $(PORT)")
+  field(FLNK, "$(P)$(Q):BURSTMODE:RBV")  
+  field(ZRST, "TRIG")
+  field(ONST, "GAT")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % gdatag,mbbinary,ro,$(name),BURSTMODERBV
+# % archiver 10 Monitor
+record(mbbi, "$(P)$(Q):BURSTMODE:RBV") {
+  field(DESC, "Burst Mode Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_string(BURS:MODE) $(PORT)")
+  field(ZRST, "TRIG")
+  field(ONST, "GAT")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#% gdatag,pv,rw,$(name),BURSTNCYC
+record(longout, "$(P)$(Q):BURSTNCYC") {
+  field(DESC, "Burst Number of Cycles")
+  field(DTYP, "stream")
+  field(OUT, "@agilent33220A.proto write_int(BURS:NCYC) $(PORT)")
+  field(FLNK, "$(P)$(Q):BURSTNCYC:RBV")  
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#% gdatag,pv,rw,$(name),BURSTNCYCINF,Set Burst Number of Cycles to Infinite,<pv>.PROC
+record(stringout, "$(P)$(Q):BURSTNCYC:INF") {
+  field(VAL, "INF")
+  field(DTYP, "stream")
+  field(OUT, "@agilent33220A.proto write_string(BURS:NCYC) $(PORT)")
+  field(FLNK, "$(P)$(Q):BURSTNCYC:RBV")    
+}
+
+# % gdatag,pv,ro,$(name),BURSTNCYCRBV
+# % archiver 10 Monitor
+record(ai, "$(P)$(Q):BURSTNCYC:RBV") {
+  field(DESC, "Burst Number of Cycles Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_float(BURS:NCYC) $(PORT)")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+#% gdatag,binary,rw,$(name),BURST
+record(bo, "$(P)$(Q):BURST") {
+  field(DESC, "Burst State")
+  field(DTYP, "stream")
+  field(FLNK, "$(P)$(Q):BURST:RBV")
+  field(OUT, "@agilent33220A.proto write_string(BURS:STAT) $(PORT)")
+  field(ZNAM, "Off")
+  field(ONAM, "On")  
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % gdatag,binary,ro,$(name),BURSTRBV
+# % archiver 10 Monitor
+record(bi, "$(P)$(Q):BURST:RBV") {
+  field(DESC, "Burst State Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_int(BURS:STAT) $(PORT)")
+  field(ZNAM, "Off")
+  field(ONAM, "On") 
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -100,7 +215,6 @@ record(ao, "$(P)$(Q):FREQ") {
   field(OUT, "@agilent33220A.proto write_float(FREQ) $(PORT)")
   field(PREC, "3")
   field(EGU, "Hz")
-#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -123,7 +237,6 @@ record(ao, "$(P)$(Q):AMP") {
   field(OUT, "@agilent33220A.proto write_float(VOLT) $(PORT)")
   field(PREC, "3")
   field(EGU, "V")
-#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -146,7 +259,6 @@ record(ao, "$(P)$(Q):OFF") {
   field(OUT, "@agilent33220A.proto write_float(VOLT:OFFS) $(PORT)")
   field(PREC, "3")
   field(EGU, "V")
-#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -169,7 +281,6 @@ record(bo, "$(P)$(Q):OUT") {
   field(OUT, "@agilent33220A.proto write_int(OUTP) $(PORT)")
   field(ZNAM, "Off")
   field(ONAM, "On")  
-#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -192,7 +303,6 @@ record(ao, "$(P)$(Q):DCYC") {
   field(OUT, "@agilent33220A.proto write_float(FUNC:SQU:DCYC) $(PORT)")
   field(PREC, "3")
   field(EGU, "%") 
-#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -215,7 +325,6 @@ record(ao, "$(P)$(Q):SYMM") {
   field(OUT, "@agilent33220A.proto write_float(FUNC:RAMP:SYMM) $(PORT)")
   field(PREC, "3")
   field(EGU, "%") 
-#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -238,7 +347,6 @@ record(ao, "$(P)$(Q):WIDT") {
   field(OUT, "@agilent33220A.proto write_float(FUNC:PULS:WIDT) $(PORT)")
   field(PREC, "6")
   field(EGU, "s") 
-#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
@@ -261,7 +369,6 @@ record(ao, "$(P)$(Q):TRAN") {
   field(OUT, "@agilent33220A.proto write_float(FUNC:PULS:TRAN) $(PORT)")
   field(PREC, "3")
   field(EGU, "s") 
-#  field(PINI, "YES")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 

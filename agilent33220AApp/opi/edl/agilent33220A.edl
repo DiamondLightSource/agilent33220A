@@ -3,10 +3,10 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 388
-y 193
+x 67
+y 629
 w 345
-h 330
+h 449
 font "arial-medium-r-18.0"
 ctlFont "arial-medium-r-18.0"
 btnFont "arial-medium-r-18.0"
@@ -35,7 +35,7 @@ release 0
 x 10
 y 45
 w 325
-h 245
+h 365
 lineColor index 14
 fill
 fillColor index 5
@@ -248,7 +248,7 @@ major 4
 minor 1
 release 0
 x 250
-y 300
+y 420
 w 85
 h 20
 fgColor index 46
@@ -306,7 +306,7 @@ major 4
 minor 1
 release 0
 x 15
-y 260
+y 50
 w 105
 h 25
 font "arial-bold-r-12.0"
@@ -325,7 +325,7 @@ major 4
 minor 0
 release 0
 x 90
-y 260
+y 50
 w 115
 h 25
 fgColor index 14
@@ -345,7 +345,7 @@ major 4
 minor 0
 release 0
 x 10
-y 300
+y 420
 w 115
 h 20
 fgColor index 25
@@ -367,7 +367,7 @@ major 4
 minor 1
 release 0
 x 130
-y 300
+y 420
 w 115
 h 20
 font "arial-bold-r-14.0"
@@ -532,7 +532,7 @@ major 4
 minor 0
 release 0
 x 90
-y 50
+y 80
 w 240
 h 25
 fgColor index 25
@@ -552,7 +552,7 @@ major 4
 minor 0
 release 0
 x 90
-y 80
+y 260
 w 240
 h 25
 fgColor index 25
@@ -572,7 +572,7 @@ major 4
 minor 1
 release 0
 x 15
-y 50
+y 80
 w 75
 h 25
 font "arial-bold-r-12.0"
@@ -591,7 +591,7 @@ major 4
 minor 1
 release 0
 x 15
-y 80
+y 260
 w 75
 h 25
 font "arial-bold-r-12.0"
@@ -610,7 +610,7 @@ major 4
 minor 0
 release 0
 x 215
-y 260
+y 50
 w 115
 h 25
 fgColor index 14
@@ -905,5 +905,224 @@ endGroup
 visPv "$(agilent):FUNC:RBV"
 visMin "3"
 visMax "4"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 15
+y 290
+w 75
+h 25
+font "arial-bold-r-12.0"
+fgColor index 14
+bgColor index 10
+useDisplayBg
+value {
+  "Trigger Src:"
+}
+endObjectProperties
+
+# (Menu Button)
+object activeMenuButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 90
+y 290
+w 240
+h 25
+fgColor index 25
+bgColor index 3
+inconsistentColor index 0
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(agilent):TRIGSRC"
+indicatorPv "$(agilent):TRIGSRC:RBV"
+font "arial-bold-r-12.0"
+endObjectProperties
+
+# (Menu Button)
+object activeMenuButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 90
+y 320
+w 240
+h 25
+fgColor index 25
+bgColor index 3
+inconsistentColor index 0
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(agilent):BURSTMODE"
+indicatorPv "$(agilent):BURSTMODE:RBV"
+font "arial-bold-r-12.0"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 15
+y 320
+w 75
+h 25
+font "arial-bold-r-12.0"
+fgColor index 14
+bgColor index 10
+useDisplayBg
+value {
+  "Burst Mode:"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 15
+y 350
+w 75
+h 25
+font "arial-bold-r-12.0"
+fgColor index 14
+bgColor index 10
+useDisplayBg
+value {
+  "Burst NCyc:"
+}
+endObjectProperties
+
+# (Textentry)
+object TextentryClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 90
+y 350
+w 100
+h 25
+controlPv "$(agilent):BURSTNCYC"
+fgColor index 25
+bgColor index 3
+fill
+font "arial-bold-r-14.0"
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 230
+y 350
+w 100
+h 25
+controlPv "$(agilent):BURSTNCYC:RBV"
+fgColor index 16
+fgAlarm
+bgColor index 10
+fill
+font "arial-bold-r-14.0"
+endObjectProperties
+
+# (Message Button)
+object activeMessageButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 195
+y 350
+w 30
+h 25
+fgColor index 25
+onColor index 4
+offColor index 3
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(agilent):BURSTNCYC:INF.PROC"
+pressValue "1"
+onLabel "Inf"
+offLabel "Inf"
+3d
+font "arial-bold-r-14.0"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 15
+y 380
+w 75
+h 25
+font "arial-bold-r-12.0"
+fgColor index 14
+bgColor index 10
+useDisplayBg
+value {
+  "Burst State:"
+}
+endObjectProperties
+
+# (Menu Button)
+object activeMenuButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 90
+y 380
+w 240
+h 25
+fgColor index 25
+bgColor index 3
+inconsistentColor index 0
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(agilent):BURST"
+indicatorPv "$(agilent):BURST:RBV"
+font "arial-bold-r-12.0"
+endObjectProperties
+
+# (Shell Command)
+object shellCmdClass
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 300
+y 5
+w 40
+h 20
+fgColor index 43
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+font "arial-bold-r-12.0"
+buttonLabel "Asyn"
+numCmds 1
+commandLabel {
+  0 "Asyn"
+}
+command {
+  0 "cd /home/diamond/R3.14.8.2/prod/support/asyn/4-6/medm; medm -x -macro \"P=$(agilent),R=:ASYN\" asynRecord.adl"
+}
 endObjectProperties
 
