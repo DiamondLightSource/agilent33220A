@@ -1,3 +1,4 @@
 # Place any example specific dependencies here
+BUSY=$(SUPPORT)/busy/1-3dls3
 ASYN=$(SUPPORT)/asyn/4-14
 STREAMDEVICE=$(SUPPORT)/streamDevice/2-4dls6
