@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<components arch="vxWorks-ppc604_long">
+	<!--<asyn.AsynIP name="FUNC" port="172.23.243.212:5025" simulation="localhost:9010"/>-->
+	<records.busy record="sdfksdlfkld"/>
+	<EPICS_BASE.EpicsEnvSet key="EPICS_CA_MAX_ARRAY_BYTES" value="3000000"/>
+	<!--<agilent33220A.agilent33220A P="TESTFUNC" PORT="FUNC" Q="FUNC" name="FGEN"/>-->
+	<ipac.Hy8002 name="CARD8" slot="8"/>
+	<!--<DLS8515.DLS8515 carrier="CARD7" ipslot="0" name="CARD70"/>-->
+	<!--<asyn.AsynSerial name="ty_70_0" port="/ty/70/0"/>-->
+	<Hy8401ip-asyn.Hy8401Asyn carrier="CARD8" clockRate="12" ipslot="1" name="ADC1" sampleSize="10000" scanMode="2"/>
+	<Hy8401ip-asyn.Channel_waveform CHAN="0" NELM="100000" P="TESTFUNC" PORT="ADC1" Q=":OUTPUT" name="OUT"/>
+	<Hy8401ip-asyn.Channel_waveform CHAN="4" NELM="100000" P="TESTFUNC" PORT="ADC1" Q=":SYNC" name="SYNC"/>
+	<!--<records.asyn AOUT="test" PORT="ty_70_0" SCAN=".1 second" TMOT="0.01" name="ASYN" record="TESTFUNC:8515"/>-->
+	<Hy8401ipTemplates.auto_Hy8401AsynControl GATEENABLE="1" GATEREENABLE="1" P="TESTFUNC:8401" PORT="ADC1" SAMPLES="100000" SCANMODE="2"/>
+</components>
