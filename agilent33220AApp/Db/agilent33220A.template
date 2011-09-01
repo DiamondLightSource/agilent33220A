@@ -159,6 +159,30 @@ record(mbbi, "$(P)$(Q):BURSTMODE:RBV") {
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
+record(mbbo, "$(P)$(Q):TRIGEDGE") {
+  field(DESC, "Trigger Edge")
+  field(DTYP, "stream")
+  field(OUT, "@agilent33220A.proto write_string(TRIG:SLOP) $(PORT)")
+  field(FLNK, "$(P)$(Q):TRIGEDGE:RBV")  
+  field(ZRST, "POS")
+  field(ONST, "NEG")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % archiver 10 Monitor
+record(mbbi, "$(P)$(Q):TRIGEDGE:RBV") {
+  field(DESC, "Trigger Edge Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_string(TRIG:SLOP) $(PORT)")
+  field(ZRST, "POS")
+  field(ONST, "NEG")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
 #% gdatag,pv,rw,$(name),BURSTNCYC
 record(longout, "$(P)$(Q):BURSTNCYC") {
   field(DESC, "Burst Number of Cycles")
@@ -270,6 +294,46 @@ record(ai, "$(P)$(Q):OFF:RBV") {
   field(INP, "@agilent33220A.proto read_float(VOLT:OFFS) $(PORT)")
   field(PREC, "3")
   field(EGU, "V")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+record(ao, "$(P)$(Q):PHASE") {
+  field(DESC, "Burst Phase Angle")
+  field(DTYP, "stream")
+  field(FLNK, "$(P)$(Q):PHASE:RBV")
+  field(OUT, "@agilent33220A.proto write_float(BURS:PHAS) $(PORT)")
+  field(PREC, "3")
+  field(EGU, "Deg")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % archiver 10 Monitor
+record(ai, "$(P)$(Q):PHASE:RBV") {
+  field(DESC, "Burst Phase Angle Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_float(BURS:PHAS) $(PORT)")
+  field(PREC, "3")
+  field(EGU, "Deg")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+record(ao, "$(P)$(Q):PULSEW") {
+  field(DESC, "Pulse Width")
+  field(DTYP, "stream")
+  field(FLNK, "$(P)$(Q):PULSEW:RBV")
+  field(OUT, "@agilent33220A.proto write_float(FUNC:PULS:WIDT) $(PORT)")
+  field(PREC, "6")
+  field(EGU, "sec")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
+# % archiver 10 Monitor
+record(ai, "$(P)$(Q):PULSEW:RBV") {
+  field(DESC, "Pulse Width Readback")
+  field(DTYP, "stream")
+  field(INP, "@agilent33220A.proto read_float(FUNC:PULS:WIDT) $(PORT)")
+  field(PREC, "6")
+  field(EGU, "sec")
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
