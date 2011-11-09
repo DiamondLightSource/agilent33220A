@@ -542,7 +542,7 @@ record(seq, "$(P)$(Q):RAMPTOZERO") {
   field(DESC, "Ramp to zero")
   field(DOL1, "$(P)$(Q):FREQ:RBV NPP")
   field(LNK1, "$(P)$(Q):STARTFREQ PP")
-  field(DO2, "0.0001")
+  field(DO2, "0.1")
   field(LNK2, "$(P)$(Q):STOPFREQ PP")
   field(DO3, "1")
   field(LNK3, "$(P)$(Q):STARTRAMP.PROC PP")  
