@@ -8,13 +8,13 @@ XMLBUILDER := dls-xml-iocbuilder.py
 DEBUG :=
 
 # Create an IOC from all .xml files and all .py files
-IOCS := $(patsubst %.xml, %, $(wildcard *.xml)) $(patsubst %.py, %, $(wildcard *.py))
+IOCS := example
 
 # These are the IOCS we don't want to make simulations out of
 NO_SIMS :=
 
 # Make simulations from all IOCS not in NO_SIMS
-SIMS := $(patsubst %, %_sim, $(filter-out $(NO_SIMS), $(IOCS)))
+#SIMS := $(patsubst %, %_sim, $(filter-out $(NO_SIMS), $(IOCS)))
 
 # These are the IOC dirs to make
 IOC_DIRS := $(patsubst %, $(TOP)/iocs/%, $(IOCS) $(SIMS))
