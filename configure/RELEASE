@@ -18,8 +18,8 @@
 # or include statements that pull in similar RELEASE files.
 # Build settings that are NOT module paths should appear in a
 # CONFIG_SITE file.
-SUPPORT = /dls_sw/prod/R3.14.12.3/support
-WORK = /dls_sw/work/R3.14.12.3/support
+SUPPORT = /dls_sw/prod/R3.14.12.7/support
+WORK = /dls_sw/work/R3.14.12.7/support
 
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 
@@ -27,7 +27,7 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 #SNCSEQ=$(EPICS_BASE)/../modules/soft/seq
 
 # EPICS_BASE usually appears last so other apps can override stuff:
-EPICS_BASE=/dls_sw/epics/R3.14.12.3/base
+EPICS_BASE=/dls_sw/epics/R3.14.12.7/base
 
 # Set RULES here if you want to take build rules from somewhere
 # other than EPICS_BASE:
