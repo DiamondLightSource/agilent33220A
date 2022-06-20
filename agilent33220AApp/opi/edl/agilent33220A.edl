@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 572
-y 418
+x 1328
+y 642
 w 355
 h 776
 font "arial-medium-r-18.0"
@@ -1479,8 +1479,8 @@ offColor index 7
 inconsistentColor index 14
 topShadowColor index 1
 botShadowColor index 11
-controlPv "$(P)$(Q):TRIG"
-indicatorPv "$(P)$(Q):TRIG"
+controlPv "$(agilent):TRIG"
+indicatorPv "$(agilent):TRIG"
 onLabel "Manual Trigger"
 offLabel "Manual Trigger"
 buttonType "push"
