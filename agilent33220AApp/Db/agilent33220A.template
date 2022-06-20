@@ -133,6 +133,15 @@ record(mbbi, "$(P)$(Q):TRIGSRC:RBV") {
   field(SDIS, "$(P)$(Q):DISABLE")
 }
 
+#% gdatag,binary,rw,$(name=),TRIG
+record(bo, "$(P)$(Q):TRIG") {
+  field(DESC, "Manual Trigger")
+  field(DTYP, "stream")
+  field(OUT, "@agilent33220A.proto write_string(TRIG) $(PORT)")
+  field(FLNK, "$(P)$(Q):TRIG:RBV")
+  field(SDIS, "$(P)$(Q):DISABLE")
+}
+
 #% gdatag,mbbinary,rw,$(name=),BURSTMODE
 record(mbbo, "$(P)$(Q):BURSTMODE") {
   field(DESC, "Burst Mode")
